@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .full-box{
+        MARGIN: auto;
+        display: flex;
+        font-family: cursive;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid black;
+        border-radius: 20px;
+        WIDTH: 30%;
+    }
+    .row {
+        display: flex;
+    }
+    .box {
+        display: flex;
+        height: 100px;
+        width: 100px;
+        border: 2px solid black;
+        font-size: 100px;
+        align-items: center;
+        justify-content: center;
+        font-family: cursive;
+    }
+</style>
+<body>
+    <div class="full-box">
+        <h1>Jogo da velha</h1>
+        <div class="row">
+            <div class="box" id="c1" onclick="marcarCampo(this)"></div>
+            <div class="box" id="c2" onclick="marcarCampo(this)"></div>
+            <div class="box" id="c3" onclick="marcarCampo(this)"></div>
+        </div>
+        <div class="row">
+            <div class="box" id="c4" onclick="marcarCampo(this)"></div>
+            <div class="box" id="c5" onclick="marcarCampo(this)"></div>
+            <div class="box" id="c6" onclick="marcarCampo(this)"></div>
+        </div>
+        <div class="row">
+            <div class="box" id="c7" onclick="marcarCampo(this)"></div>
+            <div class="box" id="c8" onclick="marcarCampo(this)"></div>
+            <div class="box" id="c9" onclick="marcarCampo(this)"></div>
+        </div>
+        <br>
+        <br>
+        <button onclick="limparCaixas()">Resetar</button>
+    </div>
+    <script>
+
+        const p1 = "X"
+        const p2 = "O"
+        var turno = "p1"
+
+        function verificarSeQuadroEstaVazio(box) {
+            if (box.textContent == "") {
+                return "vazio";
+            }
+        }
+        
+        function limparCaixas(){
+            document.getElementById("c1").textContent = "";
+            document.getElementById("c2").textContent = "";
+            document.getElementById("c3").textContent = "";
+            document.getElementById("c4").textContent = "";
+            document.getElementById("c5").textContent = "";
+            document.getElementById("c6").textContent = "";
+            document.getElementById("c7").textContent = "";
+            document.getElementById("c8").textContent = "";
+            document.getElementById("c9").textContent = "";
+        }
+
+        function verificarVitoria(player,playerVitorioso){
+            var c1 = document.getElementById("c1").textContent;
+            var c2 = document.getElementById("c2").textContent;
+            var c3 = document.getElementById("c3").textContent;
+            var c4 = document.getElementById("c4").textContent;
+            var c5 = document.getElementById("c5").textContent;
+            var c6 = document.getElementById("c6").textContent;
+            var c7 = document.getElementById("c7").textContent;
+            var c8 = document.getElementById("c8").textContent;
+            var c9 = document.getElementById("c9").textContent;
+
+            // vitoria por linhas
+            if (c1 == player && c2 == player && c3 == player){
+                alert("vitoria do "+ playerVitorioso)
+                return limparCaixas();
+            }
+            if (c4 == player && c5 == player && c6 == player){
+                alert("vitoria do "+ playerVitorioso)
+                return limparCaixas();
+            }
+            if (c7 == player && c8 == player && c9 == player){
+                alert("vitoria do "+ playerVitorioso)
+                return limparCaixas();
+            }
+
+            // vitoria por colunas
+            if (c1 == player && c4 == player && c7 == player){
+                alert("vitoria do "+ playerVitorioso)
+                return limparCaixas();
+            }
+            if (c2 == player && c5 == player && c8 == player){
+                alert("vitoria do "+ playerVitorioso)
+                return limparCaixas();
+            }
+            if (c3 == player && c6 == player && c9 == player){
+                alert("vitoria do "+ playerVitorioso)
+                return limparCaixas();
+            }
+
+            // vitoria pelas diagonais
+            if (c1 == player && c5 == player && c9 == player){
+                alert("vitoria do "+ playerVitorioso)
+                return limparCaixas();   
+            }
+            if (c7 == player && c5 == player && c3 == player){
+                alert("vitoria do "+ playerVitorioso)
+                return limparCaixas();
+            }
+
+        }
+
+
+
+        function marcarCampo(box){
+            
+            if (verificarSeQuadroEstaVazio(box) == "vazio"){
+                if (turno == "p1") {
+                    box.textContent = p1;
+                    turno = "p2"
+                    verificarVitoria(p1,"jogador 1")
+                    return
+                }
+                if (turno == "p2"){
+                    box.textContent = p2;
+                    turno = "p1";
+                    verificarVitoria(p2,"jogador 2")
+                    return 
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
