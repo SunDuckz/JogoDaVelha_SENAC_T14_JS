@@ -241,16 +241,18 @@
                     verificarEmpate();
                     if (verificarVitoria(p1,"jogador 1") == true){
                         removerEvento("onclick")
-                    }
-                    return
+                        return
+                    };
+                    verificarEmpate();
                 }
                 if (turno == "p2"){
                     box.textContent = p2;
                     turno = "p1";
-                    verificarEmpate();
                     if(verificarVitoria(p2,"jogador 2") == true){
                         removerEvento("onclick")
-                    }
+                        return;
+                    };
+                    verificarEmpate();
                     return 
                 }
             }
