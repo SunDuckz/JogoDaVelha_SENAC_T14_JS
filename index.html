@@ -14,7 +14,7 @@
         align-items: center;
         border: 2px solid black;
         border-radius: 20px;
-        WIDTH: 30%;
+        WIDTH: 36%;
     }
     .row {
         display: flex;
@@ -40,6 +40,18 @@
     .highlight{
         color:red;
     }
+    @media (max-width: 768px) {
+        .full-box{
+        MARGIN: auto;
+        display: flex;
+        font-family: cursive;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid black;
+        border-radius: 20px;
+        WIDTH: 50%;
+        }
+    }
     @media (max-width: 500px ) {
         .full-box{
         MARGIN: auto;
@@ -49,7 +61,7 @@
         align-items: center;
         border: 2px solid black;
         border-radius: 20px;
-        WIDTH: 45%;
+        WIDTH: 100%;
     }
     }
 </style>
@@ -238,12 +250,12 @@
                 if (turno == "p1") {
                     box.textContent = p1;
                     turno = "p2"
-                    verificarEmpate();
                     if (verificarVitoria(p1,"jogador 1") == true){
                         removerEvento("onclick")
                         return
                     };
                     verificarEmpate();
+                    return
                 }
                 if (turno == "p2"){
                     box.textContent = p2;
